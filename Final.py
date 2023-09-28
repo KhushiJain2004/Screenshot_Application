@@ -5,7 +5,7 @@ from tkinter import ttk
 
 
 root = tk.Tk()
-root.title("Screenshot Application")
+root.title("Application Window")
 root.geometry("+300+100")
 
 # Create a Notebook widget
