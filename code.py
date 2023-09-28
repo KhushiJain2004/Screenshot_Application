@@ -1,6 +1,9 @@
+import time
+import os
 import tkinter as tk
 from tkinter import ttk
-
+from PIL import ImageGrab
+from tkinter import filedialog
 
 
 root = tk.Tk()
@@ -23,6 +26,27 @@ notebook.add(tab_multiple_screenshot, text="Multiple Screenshots")
 # Place the Notebook widget
 notebook.pack(fill=tk.BOTH, expand=True)
 
+#single capture functions
+def capture_single():
+    status_label=tk.Label(tab_single_screenshot, text="")
+    status_label.grid(row=3,column=0,columnspan=3,pady=20)
+    
+    root.withdraw()
+    time.sleep(0.2)
+
+    screenshot = ImageGrab.grab()
+    global path
+    save_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+    path=save_path
+    if save_path:
+        screenshot.save(save_path)
+        status_label.config(text=f"Screenshot saved as {os.path.basename(save_path)}",font=("Times New Roman",13))
+
+    root.deiconify()
+
+    folder_message = ttk.Label(root, text=f"Screenshots saved in folder: {save_path}  :)")
+    folder_message.pack(pady=20)
+
 #single screenshot tab layout
 style = ttk.Style()
 style.configure("CustomLabel.TLabel", font=("Times New Roman", 15, "bold"), foreground="black")
@@ -41,7 +65,7 @@ label3=ttk.Label(frame1,text="Click capture button to take a single screenshot."
 label3.config(font=("Times New Roman", 13))
 label3.grid(row=2,column=0,columnspan=2,pady=20)
 
-capture=ttk.Button(frame1,text="Capture",command=None)
+capture=ttk.Button(frame1,text="Capture",command=capture_single)
 capture.grid(row=2,column=2,pady=20)
 
 delay_label=tk.Label(frame1,text=" Enter a time delay :")
