@@ -131,4 +131,26 @@ delay_entry.grid(row=3,column=1,columnspan=1,pady=20)
 capture_delay=ttk.Button(frame1,text="Capture with delay",command=capture_delay)
 capture_delay.grid(row=3,column=2,pady=20)
 
+#multiple screenshot tab layout
+
+label1=ttk.Label(tab_multiple_screenshot,text="SCREENSHOT APPLICATION",style="CustomLabel.TLabel")
+label1.grid(row=0,column=0,pady=20)
+label2=ttk.Label(tab_multiple_screenshot,text="Multiple screenshots :) ")
+label2.config(font=("Times New Roman",13,"bold"))
+label2.grid(row=1,column=0,pady=0)
+
+frame1=ttk.Frame(tab_multiple_screenshot,height=10,style="Custom.TFrame")
+frame1.grid(row=2,column=0,pady=20)
+
+label3=ttk.Label(frame1,text="Enter the no of screenshots you want :")
+label3.grid(row=0,column=0,pady=20)
+label3.config(font=("Times New Roman",13))
+
+entry=ttk.Entry(frame1)
+entry.grid(row=1,column=0)
+
+capture=ttk.Button(frame1,text="Capture",command=None)
+capture.grid(row=2,column=0,pady=10)
+
+
 root.mainloop()
