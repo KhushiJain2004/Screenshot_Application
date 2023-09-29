@@ -4,11 +4,38 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import ImageGrab
 from tkinter import filedialog
-
+from tkinter import font
 
 root = tk.Tk()
 root.title("Application Window")
 root.geometry("+300+100")
+
+#menu bar functions
+path=None
+def view_previous():
+    if(path):
+        os.startfile(path)
+
+def open_folder():
+    folder_path= filedialog.askdirectory()
+    if(folder_path):
+        os.startfile(folder_path)
+
+# Create a Menu bar
+menu_bar = tk.Menu(root)
+root.config(menu=menu_bar)
+
+# Create an "view" menu
+view = tk.Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label="View", menu=view)
+view.add_command(label="View Folder",font=font.Font(family="Times New Roman", size=11 ),command=open_folder)
+view.add_command(label="View Last screenshot",font=font.Font(family="Times New Roman", size=11),command=view_previous)
+
+# Create an "Exit" menu
+def exit_application():
+    root.quit()
+menu_bar.add_command(label="Exit", command=exit_application)
+
 
 # Create a Notebook widget
 notebook = ttk.Notebook(root)
