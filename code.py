@@ -70,10 +70,22 @@ def capture_single():
         status_label.config(text=f"Screenshot saved as {os.path.basename(save_path)}",font=("Times New Roman",13))
 
     root.deiconify()
-
     folder_message = ttk.Label(root, text=f"Screenshots saved in folder: {save_path}  :)")
     folder_message.pack(pady=20)
 
+def start_countdown(delay):
+    countdown_label=ttk.Label(tab_single_screenshot, text="")
+    countdown_label.grid(row=3,column=0,columnspan=3)
+    countdown_label.config(text=f"Taking a screenshot in {delay} seconds...",font=("Times New Roman",13))
+    tab_single_screenshot.update()  # Update the GUI to show the countdown label
+
+    for remaining_time in range(delay, -1, -1):
+        countdown_label.config(text=f"Taking a screenshot in {remaining_time} seconds...")
+        tab_single_screenshot.update()  # Update the GUI to show the updated countdown label
+        time.sleep(1)
+
+    countdown_label.grid_forget()
+    
 #single screenshot tab layout
 style = ttk.Style()
 style.configure("CustomLabel.TLabel", font=("Times New Roman", 15, "bold"), foreground="black")
