@@ -85,6 +85,20 @@ def start_countdown(delay):
         time.sleep(1)
 
     countdown_label.grid_forget()
+
+def capture_delay():
+    e=(delay_entry.get())
+    if(e.isdigit()):
+        delay=int(e)
+    else:
+        error_label=ttk.Label(tab_single_screenshot,text="Incorrect Input :(")
+        error_label.config(font=("Times New Roman",12))
+        error_label.grid(row=3,column=0,columnspan=3,pady=10)
+    start_countdown(delay)
+    root.withdraw()
+    time.sleep(0.1)
+    capture_single()
+    root.deiconify()
     
 #single screenshot tab layout
 style = ttk.Style()
@@ -114,7 +128,7 @@ delay_label.config(font=("Times New Roman", 13))
 delay_entry=ttk.Entry(frame1)
 delay_entry.grid(row=3,column=1,columnspan=1,pady=20)
 
-capture_delay=ttk.Button(frame1,text="Capture with delay",command=None)
+capture_delay=ttk.Button(frame1,text="Capture with delay",command=capture_delay)
 capture_delay.grid(row=3,column=2,pady=20)
 
 root.mainloop()
