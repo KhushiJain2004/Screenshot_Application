@@ -152,5 +152,30 @@ entry.grid(row=1,column=0)
 capture=ttk.Button(frame1,text="Capture",command=None)
 capture.grid(row=2,column=0,pady=10)
 
+#About tab Layout
+
+label1=ttk.Label(tab_about,text="SCREENSHOT APPLICATION",style="CustomLabel.TLabel")
+label1.grid(row=0,column=0,pady=20)
+
+label2=ttk.Label(tab_about,text="WELCOME USER :) ")
+label2.config(font=("Times New Roman",12,"bold"))
+label2.grid(row=1,column=0,pady=10)
+
+description_text = """
+    Screenshot Application is a simple tool designed to make capturing screenshots effortless..
+
+    Features:
+
+    - Capture single or multiple(burst) screenshots
+    - Save screenshots at your preferred Location
+    - Easy-to-use and responsive interface
+    """
+description_widget = tk.Text(tab_about, wrap=tk.WORD,height=10)
+description_widget.insert(tk.END, description_text)
+description_widget.config(state="disabled",font=("Times New Roman",12))
+description_widget.grid(row=2,column=0,pady=10)
+
+thanks=ttk.Label(tab_about,text="THANK YOU !!",font=("Times New Roman",12,"bold"))
+thanks.grid(row=3,column=0,pady=(20,0))
 
 root.mainloop()
