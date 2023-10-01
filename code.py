@@ -99,6 +99,59 @@ def capture_delay():
     time.sleep(0.1)
     capture_single()
     root.deiconify()
+
+def capture_multiple():
+    try:
+        e=entry.get()
+        if e.isdigit():
+            n=int(e)
+             # Ask the user for the directory to save screenshots
+            folder_path = filedialog.askdirectory(title="Select Directory to Save Screenshots")
+        else:
+            error_label=ttk.Label(tab_multiple_screenshot,text="Incorrect Input :(")
+            error_label.config(font=("Times New Roman",12))
+            error_label.grid(row=4,column=0,pady=10)
+            
+        if folder_path:
+            # Generate a timestamp-based subdirectory name 
+            timestamp = time.strftime("%Y%m%d%H%M%S")
+            screenshot_dir = os.path.join(folder_path, f"screenshots_{timestamp}")
+            os.makedirs(screenshot_dir, exist_ok=True)
+
+            for i in range(n):
+
+                root.withdraw()
+                time.sleep(0.2)
+                # Capture the screen
+                screenshot = ImageGrab.grab()
+
+                # Generate a unique filename for each screenshot
+                screenshot_filename = f"screenshot_{i+1}.png"
+                save_path = os.path.join(screenshot_dir, screenshot_filename)
+                global path
+                path=save_path
+
+                # Save the screenshot
+                screenshot.save(save_path)
+
+                root.deiconify()
+
+                # Create a new message label for each screenshot
+                message_label = ttk.Label(tab_multiple_screenshot, text=f"Screenshot {i+1} saved as {screenshot_filename}")
+                message_label.grid(row=3,column=0)
+                message_label.config(font=("Times new Roman",12))  # Pack the message label into the window
+                tab_multiple_screenshot.update()
+                time.sleep(0.4)
+
+        root.deiconify()
+
+        folder_message = ttk.Label(root, text=f"Screenshots saved in folder: {screenshot_dir}  :)")
+        folder_message.pack(pady=20,side="bottom")
+
+    except Exception as e:
+        message_label = ttk.Label(root, text="")
+        message_label.pack(pady=10)
+        message_label.config(text=f"Error capturing screenshot: {str(e)}")
     
 #single screenshot tab layout
 style = ttk.Style()
@@ -149,7 +202,7 @@ label3.config(font=("Times New Roman",13))
 entry=ttk.Entry(frame1)
 entry.grid(row=1,column=0)
 
-capture=ttk.Button(frame1,text="Capture",command=None)
+capture=ttk.Button(frame1,text="Capture",command=capture_multiple)
 capture.grid(row=2,column=0,pady=10)
 
 #About tab Layout
