@@ -40,6 +40,13 @@ menu_bar.add_command(label="Exit", command=exit_application)
 # Create a Notebook widget
 notebook = ttk.Notebook(root)
 
+#styling
+style=ttk.Style()
+style.configure("TFrame", background="lightblue", foreground="black")
+style.configure("TNotebook.Tab", padding=(54, 7))
+style.configure("TNotebook.Tab", font=("Times New Roman", 11,"bold"))
+style.configure("TButton",font=("Times New Roman", 13), padding=(10, 5),relief=tk.RAISED)
+
 # Create tabs
 tab_about = ttk.Frame(notebook,style="TFrame")
 tab_single_screenshot = ttk.Frame(notebook,style="TFrame")
