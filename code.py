@@ -184,6 +184,10 @@ delay_entry.grid(row=3,column=1,columnspan=1,pady=20)
 capture_delay=ttk.Button(frame1,text="Capture with delay",command=capture_delay)
 capture_delay.grid(row=3,column=2,pady=20)
 
+tab_single_screenshot.columnconfigure(0, weight=1)
+tab_single_screenshot.columnconfigure(1, weight=1)
+tab_single_screenshot.columnconfigure(2, weight=1)
+
 #multiple screenshot tab layout
 
 label1=ttk.Label(tab_multiple_screenshot,text="SCREENSHOT APPLICATION",style="CustomLabel.TLabel")
@@ -204,6 +208,8 @@ entry.grid(row=1,column=0)
 
 capture=ttk.Button(frame1,text="Capture",command=capture_multiple)
 capture.grid(row=2,column=0,pady=10)
+
+tab_multiple_screenshot.columnconfigure(0, weight=1)
 
 #About tab Layout
 
@@ -230,5 +236,6 @@ description_widget.grid(row=2,column=0,pady=10)
 
 thanks=ttk.Label(tab_about,text="THANK YOU !!",font=("Times New Roman",12,"bold"))
 thanks.grid(row=3,column=0,pady=(20,0))
+tab_about.columnconfigure(0, weight=1)
 
 root.mainloop()
